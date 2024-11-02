@@ -1,5 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+
 import java.util.Scanner;
 
 public class FileCompressor {
@@ -28,7 +28,9 @@ public class FileCompressor {
 
     public static void checkIfFileExist(String file_path) throws FileNotFoundException {
         
-        File file = new File(file_path);
+        File file;
+        
+        file = new File(file_path);
 
         if(file.exists())
         {
@@ -39,24 +41,28 @@ public class FileCompressor {
         {
             throw new FileNotFoundException("File not found at the specified path: " + file_path);
         }
-        }
+    }
 
                 
     private static void isCompressed(String file_path) {
 
-        File file = new File(file_path);
+        File file;
+
+        file = new File(file_path);
 
         if (file_path.endsWith(".zip") || file_path.endsWith(".gz") || file_path.endsWith(".huf") 
             || file_path.endsWith(".7z") || file_path.endsWith(".rar") || file_path.endsWith(".tar"))
         {
+            
             Decompressor decompress_file = new Decompressor();
             decompress_file.decompress(file);
         }
         else
         {
+            
             Compressor compress_file = new Compressor();
             compress_file.Compress(file);
+
         }
     }
 }
-
