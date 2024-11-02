@@ -43,12 +43,20 @@ public class FileCompressor {
 
                 
     private static void isCompressed(String file_path) {
+
+        File file = new File(file_path);
+
         if (file_path.endsWith(".zip") || file_path.endsWith(".gz") || file_path.endsWith(".huf") 
             || file_path.endsWith(".7z") || file_path.endsWith(".rar") || file_path.endsWith(".tar"))
         {
-
+            Decompressor decompress_file = new Decompressor();
+            decompress_file.decompress(file);
+        }
+        else
+        {
+            Compressor compress_file = new Compressor();
+            compress_file.Compress(file);
         }
     }
 }
 
-//then i need to proceed with continuing the isCompressed method and the rest of the program
