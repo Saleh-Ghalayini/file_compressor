@@ -11,6 +11,7 @@ public class FileCompressor {
 
         System.out.print("Please enter the path of the file you want to Compress/Decompress: ");
         file_path = scan.nextLine();
+        file_path = file_path.replace("\"", "");
 
         try 
         {
@@ -21,7 +22,7 @@ public class FileCompressor {
             System.out.println(e.getMessage());
         }
         
-
+        scan.close();
         
     }
 
@@ -31,6 +32,7 @@ public class FileCompressor {
 
         if(file.exists())
         {
+            System.out.println("File is found");
             isCompressed(file_path);
         }
         else
@@ -49,5 +51,4 @@ public class FileCompressor {
     }
 }
 
-//need to fix errors about the file path and how to handle it
 //then i need to proceed with continuing the isCompressed method and the rest of the program
