@@ -11,6 +11,7 @@ public class FileCompressor {
 
         System.out.print("Please enter the path of the file you want to Compress/Decompress: ");
         file_path = scan.nextLine();
+        file_path = "C:\\Users\\Admin\\Desktop\\New Text Document.txt";
         file_path = file_path.replace("\"", "");
 
         try 

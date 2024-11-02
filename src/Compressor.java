@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.HashMap;
 
 public class Compressor {
     public void Compress(File file)
@@ -6,12 +7,21 @@ public class Compressor {
         try
         {
             FileReader reader = new FileReader(file);
-            int data = reader.read();
+            int data;
 
-            while(data != -1)
+            HashMap<Integer, Integer> frequency = new HashMap<>();
+
+            while((data = reader.read()) != -1)
             {
-                System.out.print((char) data);
-                data = reader.read();
+                
+                if(frequency.containsKey(data))
+                {
+                    frequency.put(data, frequency.get(data) + 1);
+                }
+                else
+                {
+                    frequency.put(data, 1);
+                }
             }
             reader.close();
         } 
