@@ -1,13 +1,17 @@
 import java.io.*;
+import java.nio.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Compressor {
-    public void Compress(File file)
+    public void Compress(File file,Path file_path)
     {
         try
         {
-            FileReader reader = new FileReader(file);
+            BufferedReader reader = Files.newBufferedReader(file_path, StandardCharsets.UTF_8);
             int data;
 
             HashMap<Integer, Integer> frequency = new HashMap<>();
@@ -29,10 +33,12 @@ public class Compressor {
             //according to the value (frequency of each character)
             //then we store them into a linked hashmap because it keeps the entries in order while the hashmap doesn't  
             LinkedHashMap<Integer, Integer> sorted_frequency = frequency.entrySet().stream()
-                .sorted((value1, value2) -> value2.getValue().compareTo(value1.getValue())) // Change here for descending order
+                .sorted((value1, value2) -> value2.getValue().compareTo(value1.getValue()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (value1, value2) -> value1, LinkedHashMap::new));
 
-            System.out.println(sorted_frequency);
+            
+
+            //System.out.println(sorted_frequency);
 
             reader.close();
         } 

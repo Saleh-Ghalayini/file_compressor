@@ -1,5 +1,5 @@
 import java.io.*;
-
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class FileCompressor {
@@ -11,7 +11,6 @@ public class FileCompressor {
 
         System.out.print("Please enter the path of the file you want to Compress/Decompress: ");
         file_path = scan.nextLine();
-        file_path = "C:\\Users\\Admin\\Desktop\\New Text Document.txt";
         file_path = file_path.replace("\"", "");
 
         try 
@@ -56,13 +55,13 @@ public class FileCompressor {
         {
             
             Decompressor decompress_file = new Decompressor();
-            decompress_file.decompress(file);
+            decompress_file.decompress(file, file_path);
         }
         else
         {
             
             Compressor compress_file = new Compressor();
-            compress_file.Compress(file);
+            compress_file.Compress(file, file_path);
 
         }
     }
