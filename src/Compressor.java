@@ -39,7 +39,7 @@ public class Compressor {
         catch (IOException e)
         {
             e.printStackTrace();
-        }
+        }       
 
     }
 
