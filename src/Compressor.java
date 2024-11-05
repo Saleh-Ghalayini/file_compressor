@@ -1,7 +1,4 @@
-import java.io.*;
-import java.nio.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.io.*;   
 import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,7 +8,7 @@ public class Compressor {
     {
         try
         {
-            BufferedReader reader = Files.newBufferedReader(file_path, StandardCharsets.UTF_8);
+            BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
             int data;
 
             HashMap<Integer, Integer> frequency = new HashMap<>();
@@ -38,7 +35,7 @@ public class Compressor {
 
             
 
-            //System.out.println(sorted_frequency);
+            System.out.println(sorted_frequency);
 
             reader.close();
         } 
