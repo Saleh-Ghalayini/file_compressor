@@ -14,8 +14,8 @@ public class ByteFrequencyEncoder {
         PriorityQueue<Node> node_queue = new PriorityQueue<>();
          
         sorted_frequency.forEach((key, value) -> {
-            Node new_node = new Node(key, value); //creating new nodes for each linkedhashmap key/value
-            node_queue.add(new_node);   //adding it to the priorityQueue
+            Node new_node = new Node(key, value);       //creating new nodes for each linkedhashmap key/value
+            node_queue.add(new_node);                   //adding it to the priorityQueue
         });
     }
 
