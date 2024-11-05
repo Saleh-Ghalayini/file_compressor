@@ -7,9 +7,9 @@ public class ByteFrequencyEncoder {
         
     }
     
-    public void Encode(LinkedHashMap<Integer, Integer> sorted_frequency)
+    public void generateTree(LinkedHashMap<Integer, Integer> sorted_frequency)
     {
-
+        
     }
 
 }

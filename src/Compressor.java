@@ -34,7 +34,7 @@ public class Compressor {
 
             ByteFrequencyEncoder encoder = new ByteFrequencyEncoder();
         
-            encoder.Encode(sorted_frequency);
+            encoder.generateTree(sorted_frequency);
 
         } 
         catch (FileNotFoundException e)
