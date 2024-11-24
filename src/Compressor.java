@@ -28,11 +28,11 @@ public class Compressor {
                 }
             }
   
+            reader.close();
+
             LinkedHashMap<Integer, Integer> sorted_frequency = sortHashMap(frequency);
             
             //System.out.println(sorted_frequency);
-
-            reader.close();
 
             ByteFrequencyEncoder encoder = new ByteFrequencyEncoder();
         

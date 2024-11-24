@@ -1,15 +1,15 @@
 public class Node {
     int byte_value;
     int frequency;
-    Node left;
-    Node right;
+    Node left_node;
+    Node right_node;
 
     public Node(int byte_value, int frequency) {
 
         this.byte_value = byte_value;
         this.frequency = frequency;
-        left = null;
-        right = null;
+        left_node = null;
+        right_node = null;
 
     }
 }
