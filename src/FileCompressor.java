@@ -9,61 +9,60 @@ public class FileCompressor {
         
         Scanner scan = new Scanner(System.in);
         String file_path_string;
-        Path file_path;
+        File file;
 
         System.out.print("Please enter the path of the file you want to Compress/Decompress: ");
-        file_path_string = scan.nextLine();
-        file_path_string = file_path_string.replace("\"", "");
-        file_path = Paths.get(file_path_string);
+        file_path_string = scan.nextLine().replace("\"", "");
+        file = new File(file_path_string);
 
-        try 
-        {
-            checkIfFileExist(file_path_string, file_path);
+        try {
+
+            checkIfFileExist(file);
+
         } 
-        catch (FileNotFoundException e)
-        {
+        catch (FileNotFoundException e) {
+
             System.out.println(e.getMessage());
+
         }
         
         scan.close();
-        
+
     }
 
-    public static void checkIfFileExist(String file_path_string, Path file_path) throws FileNotFoundException {
-        
-        File file;
-        
-        file = new File(file_path_string);
+    public static void checkIfFileExist(File file) throws FileNotFoundException {
 
-        if(file.exists())
-        {
+        if(file.exists()) {
+
             System.out.println("File is found");
-            isCompressed(file_path_string, file_path);
+
+            isCompressed(file);
+
         }
-        else
-        {
-            throw new FileNotFoundException("File not found at the specified path: " + file_path_string);
+        else {
+
+            throw new FileNotFoundException("File not found at the specified path: " + file.getPath());
+
         }
     }
-
                 
-    private static void isCompressed(String file_path_string, Path file_path) {
+    private static void isCompressed(File file) {
 
-        File file;
+        String fileName = file.getName();
 
-        file = new File(file_path_string);
-
-        if (file_path_string.endsWith(".zip") || file_path_string.endsWith(".gz") || file_path_string.endsWith(".huf") 
-            || file_path_string.endsWith(".7z") || file_path_string.endsWith(".rar") || file_path_string.endsWith(".tar"))
+        if (fileName.endsWith(".zip") || fileName.endsWith(".gz") 
+            || fileName.endsWith(".huf") || fileName.endsWith(".7z")
+            || fileName.endsWith(".rar") || fileName.endsWith(".tar"))
         {
             
             Decompressor decompress_file = new Decompressor();
-            decompress_file.decompress(file, file_path);
+            decompress_file.decompress(file);
+            
         }
-        else
-        {
+        else {
+
             Compressor compress_file = new Compressor();
-            compress_file.Compress(file, file_path);
+            compress_file.Compress(file);
 
         }
     }
