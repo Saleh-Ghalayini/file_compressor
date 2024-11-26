@@ -21,7 +21,6 @@ public class ByteFrequencyEncoder {
         }
         
         combineNodes(node_queue);
-        generateHuffmanCodes();
         buildHuffmanTree(node_queue);
 
     }
@@ -36,7 +35,9 @@ public class ByteFrequencyEncoder {
         
         buildHuffmanTree(node_queue);
 
-    }
+        generateHuffmanCodes(node_queue.peek(), "");
+
+    }   
 
     public void combineNodes(PriorityQueue<Node> node_queue) {
         
@@ -50,9 +51,20 @@ public class ByteFrequencyEncoder {
         node_queue.add(parent_node);
     }
 
-    public void generateHuffmanCodes(){
+    public void generateHuffmanCodes(Node root, String code){
 
+        if(root == null) {
+            return;
+        }
 
+        if(root.left_node == null && root.right_node == null) {
+
+            huffman_codes.put((char) root.byte_value, code);
+
+        }
+
+        generateHuffmanCodes(root.left_node, code + "0");
+        generateHuffmanCodes(root.right_node, code + "1");
 
     }
 
