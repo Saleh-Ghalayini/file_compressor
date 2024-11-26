@@ -1,8 +1,12 @@
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 
 public class ByteFrequencyEncoder {
+
+    Map<Character, String> huffman_codes = new HashMap<>();
 
     public ByteFrequencyEncoder() {
         
@@ -17,6 +21,7 @@ public class ByteFrequencyEncoder {
         }
         
         combineNodes(node_queue);
+        generateHuffmanCodes();
         buildHuffmanTree(node_queue);
 
     }
@@ -43,6 +48,12 @@ public class ByteFrequencyEncoder {
         parent_node.right_node = right_node;
 
         node_queue.add(parent_node);
+    }
+
+    public void generateHuffmanCodes(){
+
+
+
     }
 
 }
