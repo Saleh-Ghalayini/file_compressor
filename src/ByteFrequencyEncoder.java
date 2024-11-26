@@ -7,6 +7,19 @@ public class ByteFrequencyEncoder {
     public ByteFrequencyEncoder() {
         
     }
+
+    public void buildHuffmanTree(PriorityQueue<Node> node_queue){
+
+        if(node_queue.size() == 1) {
+
+            return;
+
+        }
+        
+        combineNodes(node_queue);
+        buildHuffmanTree(node_queue);
+
+    }
     
     public void generateTree(LinkedHashMap<Integer, Integer> sorted_frequency) {
         PriorityQueue<Node> node_queue = new PriorityQueue<>();
@@ -16,6 +29,8 @@ public class ByteFrequencyEncoder {
             node_queue.add(new_node);                   //adding it to the priorityQueue
         });
         
+        buildHuffmanTree(node_queue);
+
     }
 
     public void combineNodes(PriorityQueue<Node> node_queue) {
@@ -26,7 +41,6 @@ public class ByteFrequencyEncoder {
 
         parent_node.left_node = left_node;
         parent_node.right_node = right_node;
-
 
         node_queue.add(parent_node);
     }

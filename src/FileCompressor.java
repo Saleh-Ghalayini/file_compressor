@@ -1,6 +1,4 @@
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class FileCompressor {
@@ -15,22 +13,13 @@ public class FileCompressor {
         file_path_string = scan.nextLine().replace("\"", "");
         file = new File(file_path_string);
 
-        try {
-
-            checkIfFileExist(file);
-
-        } 
-        catch (FileNotFoundException e) {
-
-            System.out.println(e.getMessage());
-
-        }
+        checkIfFileExist(file);
         
         scan.close();
 
     }
 
-    public static void checkIfFileExist(File file) throws FileNotFoundException {
+    public static void checkIfFileExist(File file)  {
 
         if(file.exists()) {
 
@@ -41,18 +30,20 @@ public class FileCompressor {
         }
         else {
 
-            throw new FileNotFoundException("File not found at the specified path: " + file.getPath());
+            System.out.print("File not found at the specified path: " + file.getPath());
+
+            System.exit(0);
 
         }
     }
                 
     private static void isCompressed(File file) {
 
-        String fileName = file.getName();
+        String file_name = file.getName();
 
-        if (fileName.endsWith(".zip") || fileName.endsWith(".gz") 
-            || fileName.endsWith(".huf") || fileName.endsWith(".7z")
-            || fileName.endsWith(".rar") || fileName.endsWith(".tar"))
+        if (file_name.endsWith(".zip") || file_name.endsWith(".gz") 
+            || file_name.endsWith(".huf") || file_name.endsWith(".7z")
+            || file_name.endsWith(".rar") || file_name.endsWith(".tar"))
         {
             
             Decompressor decompress_file = new Decompressor();
