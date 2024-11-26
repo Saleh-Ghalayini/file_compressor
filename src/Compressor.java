@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Compressor {
 
-    public void Compress(File file) {
+    public void compress(File file) {
 
         try {
 
@@ -55,6 +55,7 @@ public class Compressor {
             e.printStackTrace();
 
         }
+
     }
 
     //sorting the hashmap in descending order using lambda expression with some built in methods 

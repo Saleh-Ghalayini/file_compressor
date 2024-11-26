@@ -53,7 +53,7 @@ public class FileCompressor {
         else {
 
             Compressor compress_file = new Compressor();
-            compress_file.Compress(file);
+            compress_file.compress(file);
 
         }
     }
