@@ -8,6 +8,7 @@ import java.util.PriorityQueue;
 public class ByteFrequencyEncoder {
 
     Map<Character, String> huffman_codes = new HashMap<>();
+    FileEncoder file_and_codes = new FileEncoder();
 
     public ByteFrequencyEncoder() {
         
@@ -26,7 +27,7 @@ public class ByteFrequencyEncoder {
 
     }
     
-    public void generateTree(LinkedHashMap<Integer, Integer> sorted_frequency) {
+    public void generateTree(LinkedHashMap<Integer, Integer> sorted_frequency, File file) {
         PriorityQueue<Node> node_queue = new PriorityQueue<>();
          
         sorted_frequency.forEach((key, value) -> {
@@ -37,6 +38,8 @@ public class ByteFrequencyEncoder {
         buildHuffmanTree(node_queue);
 
         generateHuffmanCodes(node_queue.peek(), "");
+
+        file_and_codes.encodeFile(huffman_codes, file);
 
     }   
 

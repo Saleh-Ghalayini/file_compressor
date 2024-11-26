@@ -42,7 +42,7 @@ public class Compressor {
 
             ByteFrequencyEncoder encoder = new ByteFrequencyEncoder();
         
-            encoder.generateTree(sorted_frequency);
+            encoder.generateTree(sorted_frequency, file);
 
         }
         catch (FileNotFoundException e) {
