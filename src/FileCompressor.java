@@ -14,7 +14,7 @@ public class FileCompressor {
         file = new File(file_path_string);
 
         checkIfFileExist(file);
-        
+
         scan.close();
 
     }
@@ -23,7 +23,7 @@ public class FileCompressor {
 
         if(file.exists()) {
 
-            System.out.println("File is found");
+            System.out.println("File is found ممم");
 
             isCompressed(file);
 

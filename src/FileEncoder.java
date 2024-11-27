@@ -16,9 +16,9 @@ public class FileEncoder {
 
             BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
             int data;
-
+            System.out.println(huffman_codes);
             while((data = reader.read()) != -1) {
-                System.out.print("");
+
             }
         }
         catch (IOException e) {

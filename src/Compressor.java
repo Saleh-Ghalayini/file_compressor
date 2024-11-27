@@ -1,8 +1,9 @@
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class Compressor {
 
         try {
 
-            BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
+             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 
             int data;
 
@@ -38,7 +39,7 @@ public class Compressor {
 
             LinkedHashMap<Integer, Integer> sorted_frequency = sortHashMap(frequency);
             
-            //System.out.println(sorted_frequency);
+            System.out.println(sorted_frequency);
 
             ByteFrequencyEncoder encoder = new ByteFrequencyEncoder();
         
