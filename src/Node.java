@@ -1,4 +1,4 @@
-public class Node {
+public class Node implements Comparable<Node> {
     int byte_value;
     int frequency;
     Node left_node;
@@ -10,6 +10,13 @@ public class Node {
         this.frequency = frequency;
         left_node = null;
         right_node = null;
+
+    }
+
+    @Override
+    public int compareTo(Node other) {
+
+        return Integer.compare(this.frequency, other.frequency);
 
     }
 }
