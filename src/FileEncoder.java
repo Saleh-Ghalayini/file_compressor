@@ -21,16 +21,15 @@ public class FileEncoder {
     
     public void encodeFile(Map<Character, String> huffman_codes, File file) {
         
-        //String path = file.getParentFile().getAbsolutePath() + "/" + file.getName() + ".huf";
-        String file_name = file.getName();
+        String file_name = getFileName(file.getName());
 
-        System.out.println(getFileName(file_name));
+        String path = file.getParentFile().getAbsolutePath() + "\\" + file_name + ".huff";
 
         try {
-            //File encoded_file = new File(path);
+            File encoded_file = new File(path);
             BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
             int data;
-
+            //  System.out.println(huffman_codes);
             while((data = reader.read()) != -1) {
 
             }
