@@ -23,7 +23,7 @@ public class FileCompressor {
 
         if(file.exists()) {
 
-            System.out.println("File is found ممم");
+            System.out.println("File is found");
 
             isCompressed(file);
 

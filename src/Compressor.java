@@ -39,7 +39,7 @@ public class Compressor {
 
             LinkedHashMap<Integer, Integer> sorted_frequency = sortHashMap(frequency);
             
-            System.out.println(sorted_frequency);
+            //System.out.println(sorted_frequency);
 
             ByteFrequencyEncoder encoder = new ByteFrequencyEncoder();
         
