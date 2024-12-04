@@ -41,10 +41,7 @@ public class FileCompressor {
 
         String file_name = file.getName();
 
-        if (file_name.endsWith(".zip") || file_name.endsWith(".gz") 
-            || file_name.endsWith(".huf") || file_name.endsWith(".7z")
-            || file_name.endsWith(".rar") || file_name.endsWith(".tar"))
-        {
+        if (file_name.endsWith(".huf")) {
             
             Decompressor decompress_file = new Decompressor();
             decompress_file.decompress(file);
