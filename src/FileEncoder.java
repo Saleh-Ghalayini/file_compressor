@@ -1,11 +1,13 @@
+
 import java.io.File;
 import java.util.Map;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-
+import java.io.BufferedReader;
 
 
 public class FileEncoder {
@@ -15,7 +17,9 @@ public class FileEncoder {
     }
 
     public static String getFileName(String fileName) {
+
         int index = fileName.lastIndexOf('.');
+ 
         if (index == -1) {
             return fileName;
         } else {
@@ -29,18 +33,20 @@ public class FileEncoder {
         String path = file.getParentFile().getAbsolutePath() + File.separator + file_name + ".huf";
 
         try {
-            File encoded_file = new File(path);
-            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(encoded_file));
-            BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
+
             int data;
             int byte_value;
             char character;
             String byte_bits;
             String huffman_code;
+            File encoded_file = new File(path);
             StringBuilder bitBuffer = new StringBuilder();
+            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(encoded_file));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+
 
             while((data = reader.read()) != -1) {
-
+                
                 character = (char) data;
                 huffman_code = huffman_codes.get(character);
 
@@ -69,7 +75,7 @@ public class FileEncoder {
 
                 while(remaining_bits.length() < 8) {
 
-                    bitBuffer.append("0");
+                    remaining_bits += "0";
 
                 }
                 
@@ -80,11 +86,19 @@ public class FileEncoder {
             reader.close();
             outputStream.close();
 
+            changeIcon(encoded_file);
+
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void changeIcon(File encoded_file) {
+
+        
+        
     }
 
 }
