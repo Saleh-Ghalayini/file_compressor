@@ -1,8 +1,12 @@
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Map;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+
+
 
 public class FileEncoder {
     
@@ -22,20 +26,49 @@ public class FileEncoder {
     public void encodeFile(Map<Character, String> huffman_codes, File file) {
         
         String file_name = getFileName(file.getName());
-
-        String path = file.getParentFile().getAbsolutePath() + "\\" + file_name + ".huff";
+        String path = file.getParentFile().getAbsolutePath() + File.separator + file_name + ".huf";
 
         try {
             File encoded_file = new File(path);
+            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(encoded_file));
             BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
             int data;
-            //  System.out.println(huffman_codes);
+            int byte_value;
+            char character;
+            String byte_bits;
+            String huffman_code;
+            StringBuilder bitBuffer = new StringBuilder();
+
             while((data = reader.read()) != -1) {
 
+                character = (char) data;
+                huffman_code = huffman_codes.get(character);
+                
+                if (huffman_code == null) {
+
+                    System.err.println("Character '" + character + "' not found in Huffman codes.");
+                }
+
+                bitBuffer.append(huffman_code);
+
+                while(bitBuffer.length() >= 8) {
+
+                    byte_bits = bitBuffer.substring(0, 8);
+                    bitBuffer.delete(0, 8);
+
+                    byte_value = Integer.parseInt(byte_bits, 2);
+                    outputStream.write(byte_value);
+
+                }
+
             }
+
+            reader.close();
+            outputStream.close();
+
         }
         catch (IOException e) {
-            System.out.println("Error Occurred");
+            e.printStackTrace();
         }
 
     }
