@@ -43,7 +43,7 @@ public class FileEncoder {
 
                 character = (char) data;
                 huffman_code = huffman_codes.get(character);
-                
+
                 if (huffman_code == null) {
 
                     System.err.println("Character '" + character + "' not found in Huffman codes.");
@@ -61,6 +61,20 @@ public class FileEncoder {
 
                 }
 
+            }
+
+            if(bitBuffer.length() > 0) {
+
+                String remaining_bits = bitBuffer.toString();
+
+                while(remaining_bits.length() < 8) {
+
+                    bitBuffer.append("0");
+
+                }
+                
+                byte_value = Integer.parseInt(remaining_bits, 2);
+                outputStream.write(byte_value); 
             }
 
             reader.close();
