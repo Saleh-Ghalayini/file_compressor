@@ -14,26 +14,17 @@ public class FileCompressor {
         file = new File(file_path_string);
 
         checkIfFileExist(file);
-
         scan.close();
-
     }
 
     public static void checkIfFileExist(File file)  {
 
         if(file.exists()) {
-
             System.out.println("File is found");
-
             isCompressed(file);
-
-        }
-        else {
-
+        } else {
             System.out.print("File not found at the specified path: " + file.getPath());
-
             System.exit(0);
-
         }
     }
                 
@@ -42,16 +33,11 @@ public class FileCompressor {
         String file_name = file.getName();
 
         if (file_name.endsWith(".huf")) {
-            
             Decompressor decompress_file = new Decompressor();
             decompress_file.decompress(file);
-            
-        }
-        else {
-
+        } else {
             Compressor compress_file = new Compressor();
             compress_file.compress(file);
-
         }
     }
 }

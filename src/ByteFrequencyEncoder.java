@@ -11,36 +11,29 @@ public class ByteFrequencyEncoder {
     FileEncoder file_and_codes = new FileEncoder();
 
     public ByteFrequencyEncoder() {
-        
+           
     }
 
     public void buildHuffmanTree(PriorityQueue<Node> node_queue){
 
-        if(node_queue.size() == 1) {
-
+        if(node_queue.size() == 1)
             return;
-
-        }
         
         combineNodes(node_queue);
         buildHuffmanTree(node_queue);
-
     }
     
     public void generateTree(LinkedHashMap<Integer, Integer> sorted_frequency, File file) {
+        
         PriorityQueue<Node> node_queue = new PriorityQueue<>();
          
         sorted_frequency.forEach((key, value) -> {
             Node new_node = new Node(key, value);       //creating new nodes for each linkedhashmap key/value
             node_queue.add(new_node);                   //adding it to the priorityQueue
-        });
-        
+        });  
         buildHuffmanTree(node_queue);
-
         generateHuffmanCodes(node_queue.peek(), "");
-
         file_and_codes.encodeFile(huffman_codes, file);
-
     }   
 
     public void combineNodes(PriorityQueue<Node> node_queue) {
@@ -55,21 +48,14 @@ public class ByteFrequencyEncoder {
         node_queue.add(parent_node);
     }
 
-    public void generateHuffmanCodes(Node root, String code){
+    public void generateHuffmanCodes(Node root, String code) {
 
-        if(root == null) {
+        if(root == null)
             return;
-        }
-
-        if(root.left_node == null && root.right_node == null) {
-
+        if(root.left_node == null && root.right_node == null)
             huffman_codes.put((char) root.byte_value, code);
-
-        }
 
         generateHuffmanCodes(root.left_node, code + "0");
         generateHuffmanCodes(root.right_node, code + "1");
-
     }
-
 }
